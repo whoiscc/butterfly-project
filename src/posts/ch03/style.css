@@ -1,0 +1,15 @@
+.button {
+  width: 75px;
+  text-align: center;
+  border: 1px solid;
+  margin: 10px auto;
+}
+
+.button img {
+  width: 30px;
+  height: 30px;
+}
+
+.turn-off {
+  background-color: black;
+}

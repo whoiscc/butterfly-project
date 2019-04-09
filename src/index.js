@@ -14,7 +14,8 @@ import posts from './posts';
 const ARTICLE_LIST = [
   {title: '想要抓住未来吗', path: '/preface', dir: false, script: null},
   {title: '第一章 - 常量', path: '/ch01', dir: true, script: posts.ch01},
-  {title: '第二章 - 每秒计数', path: '/ch02', dir: true, script: posts.ch02},
+  {title: '第二章 - 每秒', path: '/ch02', dir: true, script: posts.ch02},
+  {title: '第三章 - 点灯', path: '/ch03', dir: true, script: posts.ch03},
 ];
 
 const FRONTPAGE_PATH = '/preface';
@@ -56,7 +57,10 @@ app.appendChild(sidebar);
 app.appendChild(article);
 document.body.appendChild(app);
 
+let stopper = null;
 function refreshPage() {
+  stopper && stopper();
+
   let path = window.location.hash.slice(1);
   if (path === '/' || path === '') {
     path = FRONTPAGE_PATH;
@@ -69,7 +73,8 @@ function refreshPage() {
     '/posts' + path + '/index.md' :
     '/posts' + path + '.md';
 
-  const baseUrl = window.location.origin + window.location.pathname;
+  const baseUrl = window.location.origin.replace(/\/$/, '') +
+    window.location.pathname;
   axios
     .get(baseUrl + postPath)
     .then(resp => {
@@ -112,7 +117,7 @@ function refreshPage() {
       const html = marked(resp.data, {renderer});
       article.innerHTML = html;
 
-      postInfo.script && postInfo.script();
+      stopper = postInfo.script && postInfo.script();
     });
 }
 

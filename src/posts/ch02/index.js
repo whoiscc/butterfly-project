@@ -28,11 +28,12 @@ function tickViewStream(context) {
 }
 
 function main() {
-  tickViewStream({}).observe({
+  const subscription = tickViewStream({}).observe({
     value(view) {
       ReactDOM.render(view, document.querySelector('#box'));
     }
   });
+  return () => subscription.unsubscribe();
 }
 
 export default main;
