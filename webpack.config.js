@@ -16,13 +16,23 @@ module.exports = {
           'style-loader',
           'css-loader'
         ]
+      },
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader"
+        }
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/,
+        use: [
+          'file-loader'
+        ]
       }
     ]
   },
   devtool: 'inline-source-map',
-  devServer: {
-    contentBase: './src',
-  },
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({

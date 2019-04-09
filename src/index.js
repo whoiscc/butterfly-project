@@ -2,8 +2,11 @@
 
 import axios from 'axios';
 import marked from 'marked';
+import katex from 'katex';
+import 'katex/dist/katex.min.css';
 
 import 'normalize.css';
+import './style.css';
 
 import posts from './posts';
 
@@ -11,6 +14,7 @@ import posts from './posts';
 const ARTICLE_LIST = [
   {title: '想要抓住未来吗', path: '/preface', dir: false, script: null},
   {title: '第一章 - 常量', path: '/ch01', dir: true, script: posts.ch01},
+  {title: '第二章 - 每秒计数', path: '/ch02', dir: true, script: posts.ch02},
 ];
 
 const FRONTPAGE_PATH = '/preface';
@@ -75,7 +79,10 @@ function refreshPage() {
       const originalParagraph = renderer.paragraph;
       const promisedCodeMap = {};
       const basePath = path;
-      renderer.paragraph = function(text) {
+      renderer.paragraph = function(rawText) {
+        const text = rawText.replace(/\$([^\$]*)\$/g, (match, latexString) => {
+          return katex.renderToString(latexString);
+        });
         const result = text.match(/^{% include_code (\S+) (\d+):(\d+) %}$/)
         if (result === null) {
           return originalParagraph(text);
