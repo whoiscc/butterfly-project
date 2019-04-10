@@ -11,10 +11,27 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.css$/,
-        use: [
-          'style-loader',
-          'css-loader'
+        oneOf: [
+          {
+            test: /\.css$/,
+            include: /node_modules/,
+            use: [
+              'style-loader',
+              'css-loader',
+            ]
+          },
+          {
+            test: /\.css$/,
+            use: [
+              'style-loader',
+              {
+                loader: 'css-loader',
+                options: {
+                  modules: true,
+                }
+              }
+            ]
+          },
         ]
       },
       {

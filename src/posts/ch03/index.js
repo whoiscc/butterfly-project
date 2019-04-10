@@ -4,13 +4,13 @@ import Kefir from 'kefir';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import './style.css';
+import styles from './style.css';
 import powerImageSrc from './power.jpeg';
 
 function buttonViewStream(context) {
   return Kefir.constant(
-    <div className="button" onClick={
-      () => context.emit({target: buttonViewStream, type: 'click'})
+    <div className={ styles.button } onClick={
+      () => context.emit('clicked')
     }>
       <img src={ powerImageSrc } />
     </div>
@@ -19,8 +19,7 @@ function buttonViewStream(context) {
 
 function buttonClickedSignal(context) {
   return context.eventBus
-    .filter(({target, type}) =>
-      target === buttonViewStream && type === 'click');
+    .filter(event => event === 'clicked');
 }
 
 function buttonClickedCountStream(context) {
@@ -41,9 +40,9 @@ function main() {
   turnOffBackgroundStream(context).observe({
     value(turnOff) {
       if (turnOff) {
-        document.body.classList.add('turn-off');
+        document.body.classList.add(styles.turnOff);
       } else {
-        document.body.classList.remove('turn-off');
+        document.body.classList.remove(styles.turnOff);
       }
     }
   });

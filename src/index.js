@@ -16,6 +16,7 @@ const ARTICLE_LIST = [
   {title: '第一章 - 常量', path: '/ch01', dir: true, script: posts.ch01},
   {title: '第二章 - 每秒', path: '/ch02', dir: true, script: posts.ch02},
   {title: '第三章 - 点灯', path: '/ch03', dir: true, script: posts.ch03},
+  {title: '第四章 - 宿命', path: '/ch04', dir: true, script: posts.ch04},
 ];
 
 const FRONTPAGE_PATH = '/preface';

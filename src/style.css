@@ -1,5 +1,7 @@
 
-#box {
+:global(#box) {
+  padding: 10px;
+  margin: 10px auto;
   border: 1px solid;
-  width: 100%;
+  width: 90%;
 }
