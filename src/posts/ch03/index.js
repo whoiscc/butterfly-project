@@ -50,9 +50,12 @@ function main() {
 
 export function getContext() {
   const context = {};
+  context.emit = () => {
+    throw new Error('event bus is not being subscribed');
+  }
   const eventBus = Kefir.stream(emitter => {
     context.emit = event => {
-      emitter.emit(event);
+      emitter.value(event);
     };
   });
   context.eventBus = eventBus;

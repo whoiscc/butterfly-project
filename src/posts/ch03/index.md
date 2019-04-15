@@ -28,7 +28,7 @@
 * 它的实现出乎意料的简单，接下来就会看到
 * 在这个例子中`context.eventBus`是一个Kefir流，也就是说，创建`context`的代码对Kefir形成了依赖。我暂时还没有想到什么好的办法足够通用化地实现创建`context`的功能而不用引入麻烦的函数签名。
 
-这里顺便一提，在Kefir中有一个`Kefir.fromEvents`函数可以以DOM元素和事件名为参数方便地获得事件的信号流，然而在ReactDOM中我们难以拿到每个虚拟DOM元素对应的真实DOM元素（在其中的类似库中甚至可能是根本无法做到的），并且这从道理上也是说得通的，毕竟真实DOM何时复用何时替换应该是对用户完全透明的。因此，不管在一个Butterfly范式的项目中使用了什么库，都应该尽量尊重虚拟DOM的抽象。这样的选择会导致一部分的库使用起来很困难（如[velocity.js]和[hammer.js]），但我相信总会有办法解决的。
+这里顺便一提，在Kefir中有一个`Kefir.fromEvents`函数可以以DOM元素和事件名为参数方便地获得事件的信号流，然而在ReactDOM中我们难以拿到每个虚拟DOM元素对应的真实DOM元素（在其他类似的库中甚至可能是根本无法做到的），并且这从道理上也是说得通的，毕竟真实DOM何时复用何时替换应该是对用户完全透明的。因此，不管在一个Butterfly范式的项目中使用了什么库，都应该尽量尊重虚拟DOM的抽象。这样的选择会导致一部分的库使用起来很困难（如[velocity.js]和[hammer.js]），但我相信总会有办法解决的。
 
 [velocity.js]: http://velocityjs.org
 [hammer.js]: https://hammerjs.github.io
@@ -45,6 +45,6 @@
 
 最后的最后，我们来看看`getContext`函数的实现
 
-{% include_code index.js 51:61 %}
+{% include_code index.js 51:64 %}
 
 看懂它需要对Kefir有一定的了解，这里就不多涉及了。这个形式的`getContext`所创建的`context`可以说是除了空对象以外`context`最简单的形式（它甚至不需要是拥有内部状态的对象），接下来的章节中我还会继续用到这个版本的`getContext`，看看它可以走多远。
