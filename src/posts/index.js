@@ -6,6 +6,7 @@ import ch03 from './ch03';
 import ch04 from './ch04';
 import ch05 from './ch05';
 import in01 from './in01';
+import ch06 from './ch06';
 
 export default {
   ch01,
@@ -14,4 +15,5 @@ export default {
   ch04,
   ch05,
   in01,
+  ch06,
 };

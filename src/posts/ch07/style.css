@@ -1,0 +1,14 @@
+.money {
+  position: absolute;
+}
+
+.app {
+  position: relative;
+  height: 300px;
+  max-height: 70vh;
+}
+
+.blob {
+  position: absolute;
+  transition: all 1s ease-in-out;
+}

@@ -19,6 +19,7 @@ const ARTICLE_LIST = [
   {title: '第四章 - 宿命', path: '/ch04', dir: true, script: posts.ch04},
   {title: '第五章 - 循环', path: '/ch05', dir: true, script: posts.ch05},
   {title: '间奏一 - 观测', path: '/in01', dir: true, script: posts.in01},
+  {title: '第六章 - 约定', path: '/ch06', dir: true, script: posts.ch06},
 ];
 
 const FRONTPAGE_PATH = '/preface';
@@ -68,6 +69,8 @@ function refreshPage() {
   if (path === '/' || path === '') {
     path = FRONTPAGE_PATH;
   }
+
+  document.title = `${pathInfo[path].title} | Butterfly`;
 
   refreshSidebar(path);
 
